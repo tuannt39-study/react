@@ -1,16 +1,15 @@
 import React from 'react'
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo, deleteTodo }) => {
   const style = {
     background: 'rgb(240, 240, 240)',
     color: 'black'
   }
 
-  console.log(todo);
-
   return (
     <li
       style={style}
+      onClick={() => deleteTodo(todo.id)}
     >
       {todo.title}
     </li>
