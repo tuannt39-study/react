@@ -1,4 +1,4 @@
 # react
 
-https://www.youtube.com/watch?v=DJWCeD8h6EA&list=PLKzNGvIJtUDYPLHgjT0_AksOfew2Nv8Io
+https://www.youtube.com/playlist?list=PLeS7aZkL6GOsHNoyeEpeL8B1PnbKoQD9m
 
