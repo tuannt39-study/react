@@ -1,0 +1,13 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.card .card-cover {
+  height: 250px;
+  background-size: cover;
+}
