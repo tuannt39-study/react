@@ -3,7 +3,6 @@ import React, { createContext, useState } from 'react'
 export const ThemeContext = createContext()
 
 const ThemeContextProvider = ({ children }) => {
-  // State
   const [theme, setTheme] = useState({
     isLightTheme: true,
     light: {
@@ -16,7 +15,6 @@ const ThemeContextProvider = ({ children }) => {
     }
   })
 
-  // Function to toggle theme
   const toggleTheme = () => {
     setTheme({
       ...theme,
@@ -24,13 +22,11 @@ const ThemeContextProvider = ({ children }) => {
     })
   }
 
-  // Context data
   const themeContextData = {
     theme,
     toggleTheme
   }
 
-  // Return provider
   return (
     <ThemeContext.Provider value={themeContextData}>
       {children}

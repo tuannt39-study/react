@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
+import { TodoContext } from '../contexts/TodoContext'
 
-const TodoItem = ({ todo, deleteTodo }) => {
-  // Load Context
+const TodoItem = ({ todo }) => {
   const { theme } = useContext(ThemeContext)
+  const { deleteTodo } = useContext(TodoContext)
+
   const { isLightTheme, light, dark } = theme
 
-  // Style
   const style = isLightTheme ? light : dark
 
   return (

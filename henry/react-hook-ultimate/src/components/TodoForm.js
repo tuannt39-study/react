@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { ThemeContext } from '../contexts/ThemeContext'
+import { TodoContext } from '../contexts/TodoContext'
 
-const TodoForm = ({addTodo}) => {
-  // Load context
+const TodoForm = () => {
   const { theme } = useContext(ThemeContext)
+  const { addTodo } = useContext(TodoContext)
+
   const { isLightTheme, light, dark } = theme
 
-  // For this component only
   const [title, setTitle] = useState('')
 
   const onTitleChange = event => {
@@ -23,7 +24,6 @@ const TodoForm = ({addTodo}) => {
     setTitle('')
   }
 
-  // Style
   const style = isLightTheme ? light : dark
 
   return (
