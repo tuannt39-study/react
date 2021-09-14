@@ -3,10 +3,11 @@ import { v4 as uuidv4 } from 'uuid'
 import { ThemeContext } from '../contexts/ThemeContext'
 import { TodoContext } from '../contexts/TodoContext'
 import { AuthContext } from '../contexts/AuthContext'
+import { ADD_TODO } from '../reducers/Types'
 
 const TodoForm = () => {
   const { theme } = useContext(ThemeContext)
-  const { addTodo } = useContext(TodoContext)
+  const { dispatch } = useContext(TodoContext)
   const { isAuthenticated } = useContext(AuthContext)
 
   const { isLightTheme, light, dark } = theme
@@ -20,9 +21,14 @@ const TodoForm = () => {
   const handleSubmit = event => {
     event.preventDefault()
     if (isAuthenticated) {
-      addTodo({
-        id: uuidv4(),
-        title
+      dispatch({
+        type: ADD_TODO,
+        payload: {
+          todo: {
+            id: uuidv4(),
+            title
+          }
+        }
       })
     }
     setTitle('')
