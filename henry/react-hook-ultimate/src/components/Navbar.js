@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ThemeContext } from '../contexts/ThemeContext'
 
 const Navbar = () => {
-  const style = {
-    background: 'rgb(240, 240, 240)',
-    color: 'black'
-  }
+  // Load theme context
+  const { theme } = useContext(ThemeContext)
+  const { isLightTheme, light, dark } = theme
+  const style = isLightTheme ? light : dark
 
   return (
     <div className='navbar' style={style}>
