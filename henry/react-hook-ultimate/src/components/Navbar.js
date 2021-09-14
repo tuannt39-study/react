@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from '../contexts/ThemeContext'
 import { AuthContext } from '../contexts/AuthContext'
+import { TOGGLE_AUTH } from '../reducers/Types'
 
 const Navbar = () => {
   const { theme } = useContext(ThemeContext)
-  const { isAuthenticated, toggleAuth } = useContext(AuthContext)
+  const { isAuthenticated, dispatch } = useContext(AuthContext)
 
   const { isLightTheme, light, dark } = theme
   const style = isLightTheme ? light : dark
@@ -19,7 +20,9 @@ const Navbar = () => {
           {isAuthenticated ? 'You are logged in ' : ''}
           <button
             onClick={() => {
-              toggleAuth()
+              dispatch({
+                type: TOGGLE_AUTH
+              })
             }}
           >
             {isAuthenticated ? 'Logout' : 'Login'}
