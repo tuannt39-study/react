@@ -66,4 +66,5 @@ input[type='submit'] {
 .toggle-btn {
   text-align: center;
   padding-bottom: 10px;
+  cursor: pointer;
 }

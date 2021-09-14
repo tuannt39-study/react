@@ -2,10 +2,12 @@ import React, { useState, useContext } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { ThemeContext } from '../contexts/ThemeContext'
 import { TodoContext } from '../contexts/TodoContext'
+import { AuthContext } from '../contexts/AuthContext'
 
 const TodoForm = () => {
   const { theme } = useContext(ThemeContext)
   const { addTodo } = useContext(TodoContext)
+  const { isAuthenticated } = useContext(AuthContext)
 
   const { isLightTheme, light, dark } = theme
 
@@ -17,10 +19,12 @@ const TodoForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    addTodo({
-      id: uuidv4(),
-      title
-    })
+    if (isAuthenticated) {
+      addTodo({
+        id: uuidv4(),
+        title
+      })
+    }
     setTitle('')
   }
 
