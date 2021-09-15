@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { Box } from '@material-ui/core';
+import { AuthContext } from '../contexts/AuthContext';
 
 export interface IWelcomeMessageProps {
   position: string;
@@ -7,7 +9,16 @@ export interface IWelcomeMessageProps {
 
 export const WelcomeMessage = (props: IWelcomeMessageProps) => {
   const { position, country } = props;
-  return <Box mb={1}>Welcome {position} from {country}</Box>;
+
+  const {
+    authInfo: { username },
+  } = useContext(AuthContext);
+
+  return (
+    <Box mb={1}>
+      Welcome {username}, {position} from {country}
+    </Box>
+  );
 };
 
 export default WelcomeMessage;

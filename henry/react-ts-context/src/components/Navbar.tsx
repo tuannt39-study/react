@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from 'react';
 import {
   AppBar,
   Box,
@@ -9,9 +10,11 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import { useContext, useEffect, useState } from 'react';
-import WelcomeMessage from './WelcomeMessage';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+
+import WelcomeMessage from './WelcomeMessage';
+import Login from './Login';
+
 import { ProgressContext } from '../contexts/ProgressContext';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { AuthContext } from '../contexts/AuthContext';
@@ -31,13 +34,14 @@ export const Navbar = () => {
   const { lastTime, status } = useContext(ProgressContext);
   const { theme } = useContext(ThemeContext);
 
-  const [position, setPosition] = useState<string>('Full-stack');
-  const [time, setTime] = useState<Date>(() => new Date(Date.now()));
-
   const {
     authInfo: { isAuthenticated },
     toggleAuth,
   } = useContext(AuthContext);
+
+  const [position, setPosition] = useState<string>('Full-stack');
+  const [time, setTime] = useState<Date>(() => new Date(Date.now()));
+  const [loginOpen, setLoginOpen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date(Date.now())), 1000);
@@ -51,8 +55,11 @@ export const Navbar = () => {
   ) => setPosition(event.target.value as string);
 
   const onLoginClick = () => {
-    const username: string = isAuthenticated ? '' : 'react';
-    toggleAuth(username);
+    if (isAuthenticated) {
+      toggleAuth('');
+    } else {
+      setLoginOpen(true);
+    }
   };
 
   return (
@@ -91,6 +98,7 @@ export const Navbar = () => {
               {isAuthenticated ? 'Logout' : 'Login'}
             </Button>
           </Box>
+          <Login isOpen={loginOpen} handleClose={setLoginOpen} />
         </Box>
       </Toolbar>
     </AppBar>
