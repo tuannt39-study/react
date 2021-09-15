@@ -1,7 +1,8 @@
 import { AppBar, Box, Button, Chip, FormControl, MenuItem, Select, Toolbar, Typography } from '@material-ui/core';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import WelcomeMessage from './WelcomeMessage';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { ProgressContext } from '../contexts/ProgressContext';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -14,6 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Navbar = () => {
   const classes = useStyles()
+
+  const { lastTime, status } = useContext(ProgressContext);
   
   const [position, setPosition] = useState<string>('Full-stack');
   const [time, setTime] = useState<Date>(() => new Date(Date.now()));
@@ -36,7 +39,7 @@ export const Navbar = () => {
           <Typography variant="h6">React TypeScript</Typography>
           <Box textAlign="center">
             <WelcomeMessage position={position} country="Vietnam" />
-            <Chip label={`Last time working on this project: 15/09/2021 - Status: In Progress`} />
+            <Chip label={`Last time working on this project: ${lastTime} - Status: ${status}`} />
             <Box mt={1}>
               <FormControl>
                 <Select
