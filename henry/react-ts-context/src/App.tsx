@@ -7,19 +7,22 @@ import Movies from './components/Movies';
 import ProgressContextProvider from './contexts/ProgressContext';
 import ThemeContextProvider from './contexts/ThemeContext';
 import MovieContextProvider from './contexts/MovieContext';
+import AuthContextProvider from './contexts/AuthContext';
 
 function App() {
   return (
     <div className="App">
-      <MovieContextProvider>
-        <ThemeContextProvider>
-          <ProgressContextProvider>
-            <Navbar />
-            <Movies />
-            <ToggleTheme />
-          </ProgressContextProvider>
-        </ThemeContextProvider>
-      </MovieContextProvider>
+      <AuthContextProvider>
+        <MovieContextProvider>
+          <ThemeContextProvider>
+            <ProgressContextProvider>
+              <Navbar />
+              <Movies />
+              <ToggleTheme />
+            </ProgressContextProvider>
+          </ThemeContextProvider>
+        </MovieContextProvider>
+      </AuthContextProvider>
     </div>
   );
 }
