@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import WelcomeMessage from './WelcomeMessage';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { ProgressContext } from '../contexts/ProgressContext';
+import { ThemeContext } from '../contexts/ThemeContext'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,6 +18,7 @@ export const Navbar = () => {
   const classes = useStyles()
 
   const { lastTime, status } = useContext(ProgressContext);
+  const { theme } = useContext(ThemeContext)
   
   const [position, setPosition] = useState<string>('Full-stack');
   const [time, setTime] = useState<Date>(() => new Date(Date.now()));
@@ -33,7 +35,7 @@ export const Navbar = () => {
   ) => setPosition(event.target.value as string);
 
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="static" color={theme}>
       <Toolbar>
         <Box display="flex" justifyContent="space-between" alignItems="center" width={1} py={2}>
           <Typography variant="h6">React TypeScript</Typography>
