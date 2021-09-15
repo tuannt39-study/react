@@ -1,4 +1,4 @@
-import { AppBar, Box, FormControl, MenuItem, Select, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Box, Button, Chip, FormControl, MenuItem, Select, Toolbar, Typography } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import WelcomeMessage from './WelcomeMessage';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -36,6 +36,7 @@ export const Navbar = () => {
           <Typography variant="h6">React TypeScript</Typography>
           <Box textAlign="center">
             <WelcomeMessage position={position} country="Vietnam" />
+            <Chip label={`Last time working on this project: 15/09/2021 - Status: In Progress`} />
             <Box mt={1}>
               <FormControl>
                 <Select
@@ -54,6 +55,7 @@ export const Navbar = () => {
             <Box my={1}>
               <Typography variant="h6">{time.toUTCString()}</Typography>
             </Box>
+            <Button variant="contained">Login</Button>
           </Box>
         </Box>
       </Toolbar>
